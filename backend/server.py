@@ -633,11 +633,23 @@ async def startup():
     await db.messages.create_index("conversation_id")
 
 # Mount static files for HTML website
-if os.path.exists("/app/frontend-web"):
-    fastapi_app.mount("/css", StaticFiles(directory="/app/frontend-web/css"), name="css")
-    fastapi_app.mount("/js", StaticFiles(directory="/app/frontend-web/js"), name="js")
-    fastapi_app.mount("/assets", StaticFiles(directory="/app/frontend-web/assets"), name="assets")
-    fastapi_app.mount("/", StaticFiles(directory="/app/frontend-web", html=True), name="static")
+if os.path.exists("/app/css"):
+    fastapi_app.mount("/css", StaticFiles(directory="/app/css"), name="css")
+if os.path.exists("/app/js"):
+    fastapi_app.mount("/js", StaticFiles(directory="/app/js"), name="js")
+if os.path.exists("/app/assets"):
+    fastapi_app.mount("/assets", StaticFiles(directory="/app/assets"), name="assets")
+
+# Serve index.html at root
+from fastapi.responses import FileResponse
+
+@fastapi_app.get("/")
+async def serve_index():
+    return FileResponse("/app/index.html")
+
+@fastapi_app.get("/auth-callback.html")
+async def serve_auth_callback():
+    return FileResponse("/app/auth-callback.html")
 
 # Wrap FastAPI with Socket.IO
 socket_app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path='/api/socket.io')

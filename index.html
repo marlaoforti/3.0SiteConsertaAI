@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ConsertaAí - Conectamos você a especialistas locais para consertar seus eletrodomésticos">
+    <title>ConsertaAí - Do descarte para o reparo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo-container">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div class="header-text">
+                <h1 class="app-name">ConsertaAí</h1>
+                <p class="app-tagline">Do descarte para o reparo</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1721332154191-ba5f1534266e" alt="Pessoa consertando eletrônicos" class="hero-image">
+            <div class="hero-overlay">
+                <h2 class="hero-title">Não jogue fora,<br>dê uma nova vida.</h2>
+                <p class="hero-subtitle">Conectamos você a especialistas locais para consertar seus eletrodomésticos de forma rápida, barata e sustentável.</p>
+            </div>
+        </section>
+
+        <!-- Impact Stats -->
+        <section class="impact-stats">
+            <h3 class="section-title">Nosso Impacto</h3>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <i class="fas fa-leaf stat-icon"></i>
+                    <p class="stat-number" id="statWaste">0</p>
+                    <p class="stat-label">kg de lixo evitados</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-money-bill-wave stat-icon"></i>
+                    <p class="stat-number" id="statMoney">R$ 0</p>
+                    <p class="stat-label">economizados</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-cloud stat-icon"></i>
+                    <p class="stat-number" id="statCO2">0</p>
+                    <p class="stat-label">kg de CO₂ salvos</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-wrench stat-icon"></i>
+                    <p class="stat-number" id="statRepairs">0</p>
+                    <p class="stat-label">consertos realizados</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works -->
+        <section class="how-it-works">
+            <h3 class="section-title">Como Funciona</h3>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <p class="step-text">Descreva o problema do seu aparelho</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <p class="step-text">Encontre um reparador verificado por perto</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <p class="step-text">Use o chat para combinar o serviço</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Cards -->
+        <section class="action-cards">
+            <button class="action-card customer-card" onclick="handleLogin()">
+                <i class="fas fa-hammer card-icon"></i>
+                <h4 class="card-title">Preciso de um conserto</h4>
+                <p class="card-subtitle">Encontre um especialista local</p>
+            </button>
+            <button class="action-card repairer-card" onclick="handleLogin()">
+                <i class="fas fa-tools card-icon"></i>
+                <h4 class="card-title">Quero ser um reparador</h4>
+                <p class="card-subtitle">Ganhe renda extra ajudando</p>
+            </button>
+        </section>
+
+        <!-- Purpose Section -->
+        <section class="purpose-section">
+            <img src="https://images.unsplash.com/photo-1758599669327-83d310882929" alt="Voluntários" class="purpose-image">
+            <div class="purpose-content">
+                <h3 class="purpose-title">Economia Circular</h3>
+                <p class="purpose-text">Cada conserto é um passo contra o consumismo. Apoie técnicos locais e ajude a construir uma comunidade mais sustentável.</p>
+            </div>
+        </section>
+
+        <!-- Login Button -->
+        <button class="login-button" onclick="handleLogin()">
+            <span>Entrar com Google</span>
+            <i class="fab fa-google"></i>
+        </button>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="app-footer">
+        <p class="footer-text">Criado por Marlon Forti</p>
+        <p class="footer-subtext">Com 💚 para um mundo mais sustentável</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
