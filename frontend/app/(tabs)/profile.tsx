@@ -178,6 +178,12 @@ export default function ProfileScreen() {
           </View>
         </TouchableOpacity>
       </View>
+
+      {/* Footer */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Criado por Marlon Forti</Text>
+        <Text style={styles.footerSubtext}>Com 💚 para um mundo mais sustentável</Text>
+      </View>
     </ScrollView>
   );
 }
@@ -291,5 +297,24 @@ const styles = StyleSheet.create({
   logoutText: {
     color: '#EF4444',
     fontWeight: '600',
+  },
+  footer: {
+    marginTop: 32,
+    paddingVertical: 24,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB',
+    backgroundColor: '#F9FAFB',
+  },
+  footerText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  footerSubtext: {
+    fontSize: 12,
+    color: '#6B7280',
   },
 });
