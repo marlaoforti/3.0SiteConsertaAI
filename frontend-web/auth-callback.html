@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticando...</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #F9FAFB;
+        }
+        .loading-container {
+            text-align: center;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #E5E7EB;
+            border-top-color: #10B981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h2 {
+            color: #1F2937;
+            margin: 0 0 10px;
+        }
+        p {
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <h2>Autenticando...</h2>
+        <p>Aguarde enquanto processamos seu login</p>
+    </div>
+
+    <script>
+        // Process authentication callback
+        (async () => {
+            try {
+                // Get session_id from URL fragment
+                const hash = window.location.hash;
+                if (!hash.includes('session_id=')) {
+                    throw new Error('No session_id found');
+                }
+
+                const sessionId = hash.split('session_id=')[1].split('&')[0];
+
+                // Exchange session_id for user data
+                const response = await fetch('/api/auth/session', {
+                    method: 'POST',
+                    headers: {
+                        'X-Session-ID': sessionId
+                    },
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Authentication failed');
+                }
+
+                const userData = await response.json();
+
+                // Store user data
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+
+                // Redirect to home
+                window.location.href = '/home.html';
+            } catch (error) {
+                console.error('Auth error:', error);
+                alert('Erro na autenticação. Por favor, tente novamente.');
+                window.location.href = '/index.html';
+            }
+        })();
+    </script>
+</body>
+</html>

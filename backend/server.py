@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Header, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime, timezone, timedelta
@@ -630,6 +631,13 @@ async def startup():
     await db.repair_requests.create_index("customer_id")
     await db.conversations.create_index("participants")
     await db.messages.create_index("conversation_id")
+
+# Mount static files for HTML website
+if os.path.exists("/app/frontend-web"):
+    fastapi_app.mount("/css", StaticFiles(directory="/app/frontend-web/css"), name="css")
+    fastapi_app.mount("/js", StaticFiles(directory="/app/frontend-web/js"), name="js")
+    fastapi_app.mount("/assets", StaticFiles(directory="/app/frontend-web/assets"), name="assets")
+    fastapi_app.mount("/", StaticFiles(directory="/app/frontend-web", html=True), name="static")
 
 # Wrap FastAPI with Socket.IO
 socket_app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path='/api/socket.io')
